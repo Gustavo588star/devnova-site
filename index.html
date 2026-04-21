@@ -7,93 +7,157 @@
 <title>DEVNOVA | Criação de Sites Profissionais</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial;
-    background: radial-gradient(circle, #0a0f1f, #000);
-    color: white;
+:root{
+  --bg:#020611;
+  --blue:#19b5ff;
+  --blue2:#0b67ff;
+  --text:#eaf7ff;
+  --muted:#9aa8bd;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background: rgba(0,0,0,0.6);
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial;
+  background:radial-gradient(circle,#0a0f1f,#000);
+  color:var(--text);
 }
 
-header {
-    text-align: center;
-    padding: 80px 20px;
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  padding:20px;
+  position:sticky;
+  top:0;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
 }
 
-header img {
-    width: 180px;
+/* HERO */
+header{
+  text-align:center;
+  padding:90px 20px;
 }
 
-h1 {
-    color: #00bfff;
+header img{
+  width:180px;
+  animation:float 3s infinite;
 }
 
-.btn {
-    background: #00bfff;
-    padding: 15px;
-    border-radius: 10px;
-    color: black;
-    text-decoration: none;
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
 }
 
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+h1{
+  font-size:42px;
+  color:var(--blue);
 }
 
-.card {
-    background: #111;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
+.btn{
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  padding:15px 30px;
+  border-radius:10px;
+  color:black;
+  text-decoration:none;
+  font-weight:bold;
 }
 
-.whatsapp {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: green;
-    padding: 15px;
-    border-radius: 50%;
-    color: white;
-    text-decoration: none;
+/* CARDS */
+section{
+  padding:60px 20px;
+  text-align:center;
+}
+
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.card{
+  background:#111;
+  padding:25px;
+  margin:10px;
+  border-radius:15px;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 20px var(--blue);
+}
+
+/* WHATS */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:green;
+  padding:15px;
+  border-radius:50%;
+  color:white;
+  text-decoration:none;
 }
 
 /* CHAT */
-#chat {
-position:fixed;
-bottom:20px;
-left:20px;
-width:260px;
-background:#111;
-border-radius:10px;
-box-shadow:0 0 15px #00bfff;
+#chat-widget{
+  position:fixed;
+  left:20px;
+  bottom:20px;
+  z-index:9999;
 }
 
-#chat-header {
-background:#00bfff;
-padding:10px;
-font-weight:bold;
-color:black;
+#chat-toggle{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:none;
+  font-size:24px;
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
+  cursor:pointer;
 }
 
-#chat-body {
-padding:10px;
+#chat-box{
+  width:300px;
+  display:none;
+  background:#111;
+  border-radius:15px;
+  overflow:hidden;
+  margin-bottom:10px;
+  box-shadow:0 0 20px var(--blue);
 }
 
-#chat button {
-margin:5px;
-padding:6px;
-background:#00bfff;
-border:none;
-cursor:pointer;
+#chat-header{
+  padding:10px;
+  background:var(--blue);
+  color:black;
+  font-weight:bold;
+}
+
+#chat-messages{
+  padding:10px;
+}
+
+.msg{
+  margin:5px 0;
+  padding:8px;
+  border-radius:10px;
+}
+
+.bot{background:#222;}
+.user{background:var(--blue); color:black;}
+
+#chat-options button{
+  margin:5px;
+  padding:8px;
+  width:90%;
+  border:none;
+  cursor:pointer;
+  background:#333;
+  color:white;
 }
 </style>
 </head>
@@ -106,19 +170,19 @@ cursor:pointer;
 
 <header>
 <img src="logo.png">
-<h1>Sites modernos que geram resultados</h1>
+<h1>Sites premium que geram resultados</h1>
 <p>Transformamos sua ideia em presença digital profissional</p>
 <br>
 <a class="btn" href="https://wa.me/5519993835534">Falar no WhatsApp</a>
 </header>
 
 <section>
-<h2 style="text-align:center;">Serviços</h2>
+<h2>Serviços</h2>
 
 <div class="cards">
 <div class="card">
-<h3>Sites</h3>
-<p>Criação profissional</p>
+<h3>Sites Profissionais</h3>
+<p>Criação moderna e personalizada</p>
 </div>
 
 <div class="card">
@@ -128,32 +192,60 @@ cursor:pointer;
 
 <div class="card">
 <h3>Responsivo</h3>
-<p>Funciona no celular</p>
+<p>Perfeito no celular</p>
+</div>
+
+<div class="card">
+<h3>SEO</h3>
+<p>Apareça no Google</p>
 </div>
 </div>
 </section>
 
+<footer style="text-align:center;padding:20px;">© DEVNOVA</footer>
+
 <a class="whatsapp" href="https://wa.me/5519993835534">W</a>
 
 <!-- CHAT -->
-<div id="chat">
-<div id="chat-header">Assistente DEVNOVA 🤖</div>
-<div id="chat-body">
-<p>Quer um site profissional?</p>
-<button onclick="resposta('sim')">Sim</button>
-<button onclick="resposta('preco')">Ver preço</button>
+<div id="chat-widget">
+<button id="chat-toggle">💬</button>
+
+<div id="chat-box">
+<div id="chat-header">Assistente DEVNOVA</div>
+
+<div id="chat-messages">
+<div class="msg bot">Olá! Quer um site profissional?</div>
+</div>
+
+<div id="chat-options">
+<button onclick="sendOption('Quero um site')">Quero um site</button>
+<button onclick="sendOption('Valores')">Ver valores</button>
+<button onclick="sendOption('Melhorar site')">Melhorar meu site</button>
+</div>
 </div>
 </div>
 
 <script>
-function resposta(tipo){
-if(tipo==='sim'){
-window.open('https://wa.me/5519993835534');
+const chatBox = document.getElementById('chat-box');
+const toggle = document.getElementById('chat-toggle');
+const messages = document.getElementById('chat-messages');
+
+toggle.onclick = () =>{
+chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
 }
-if(tipo==='preco'){
-alert('Valores variam. Clique para falar comigo!');
-window.open('https://wa.me/5519993835534');
-}
+
+function sendOption(text){
+let user = document.createElement('div');
+user.className='msg user';
+user.innerText=text;
+messages.appendChild(user);
+
+let bot = document.createElement('div');
+bot.className='msg bot';
+bot.innerText='Clique abaixo e fale comigo no WhatsApp';
+messages.appendChild(bot);
+
+window.open('https://wa.me/5519993835534?text='+text);
 }
 </script>
 
