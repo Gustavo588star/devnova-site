@@ -9,112 +9,153 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(180deg, #050a14, #000);
+    font-family: Arial;
+    background: radial-gradient(circle, #0a0f1f, #000);
     color: white;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: rgba(0,0,0,0.6);
 }
 
 header {
     text-align: center;
     padding: 80px 20px;
-    background: radial-gradient(circle, #0f2a4d, #000);
 }
 
 header img {
-    width: 200px;
+    width: 180px;
 }
 
 h1 {
-    font-size: 38px;
-    margin-top: 20px;
-    color: #00c3ff;
-}
-
-p {
-    color: #ccc;
-    max-width: 600px;
-    margin: auto;
+    color: #00bfff;
 }
 
 .btn {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 15px 30px;
-    background: #00c3ff;
+    background: #00bfff;
+    padding: 15px;
+    border-radius: 10px;
     color: black;
     text-decoration: none;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-section {
-    padding: 60px 20px;
-    text-align: center;
 }
 
 .cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 25px;
-    margin-top: 40px;
 }
 
 .card {
-    background: #0f172a;
-    padding: 25px;
-    width: 250px;
-    border-radius: 15px;
+    background: #111;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
 }
 
-footer {
-    text-align: center;
-    padding: 30px;
-    background: #000;
-    color: #777;
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: green;
+    padding: 15px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+}
+
+/* CHAT */
+#chat {
+position:fixed;
+bottom:20px;
+left:20px;
+width:260px;
+background:#111;
+border-radius:10px;
+box-shadow:0 0 15px #00bfff;
+}
+
+#chat-header {
+background:#00bfff;
+padding:10px;
+font-weight:bold;
+color:black;
+}
+
+#chat-body {
+padding:10px;
+}
+
+#chat button {
+margin:5px;
+padding:6px;
+background:#00bfff;
+border:none;
+cursor:pointer;
 }
 </style>
-
 </head>
+
 <body>
 
+<nav>
+<div>DEVNOVA</div>
+</nav>
+
 <header>
-    <img src="logo.png" alt="DEVNOVA Logo">
-    <h1>Transformamos ideias em resultados</h1>
-    <p>Criamos sites profissionais, rápidos e modernos para empresas que querem crescer no digital.</p>
-    <a class="btn" href="https://wa.me/5519993835534" target="_blank">Falar no WhatsApp</a>
+<img src="logo.png">
+<h1>Sites modernos que geram resultados</h1>
+<p>Transformamos sua ideia em presença digital profissional</p>
+<br>
+<a class="btn" href="https://wa.me/5519993835534">Falar no WhatsApp</a>
 </header>
 
 <section>
-    <h2>Serviços</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>Sites Profissionais</h3>
-            <p>Criação de sites modernos e personalizados.</p>
-        </div>
-        <div class="card">
-            <h3>Alta Performance</h3>
-            <p>Sites rápidos e otimizados.</p>
-        </div>
-        <div class="card">
-            <h3>Responsivo</h3>
-            <p>Perfeito para celular e computador.</p>
-        </div>
-        <div class="card">
-            <h3>SEO</h3>
-            <p>Melhor posicionamento no Google.</p>
-        </div>
-    </div>
+<h2 style="text-align:center;">Serviços</h2>
+
+<div class="cards">
+<div class="card">
+<h3>Sites</h3>
+<p>Criação profissional</p>
+</div>
+
+<div class="card">
+<h3>Landing Pages</h3>
+<p>Venda mais</p>
+</div>
+
+<div class="card">
+<h3>Responsivo</h3>
+<p>Funciona no celular</p>
+</div>
+</div>
 </section>
 
-<section>
-    <h2>Por que escolher a DEVNOVA?</h2>
-    <p>Design moderno, atendimento rápido e foco em resultado real.</p>
-</section>
+<a class="whatsapp" href="https://wa.me/5519993835534">W</a>
 
-<footer>
-    © 2026 DEVNOVA
-</footer>
+<!-- CHAT -->
+<div id="chat">
+<div id="chat-header">Assistente DEVNOVA 🤖</div>
+<div id="chat-body">
+<p>Quer um site profissional?</p>
+<button onclick="resposta('sim')">Sim</button>
+<button onclick="resposta('preco')">Ver preço</button>
+</div>
+</div>
+
+<script>
+function resposta(tipo){
+if(tipo==='sim'){
+window.open('https://wa.me/5519993835534');
+}
+if(tipo==='preco'){
+alert('Valores variam. Clique para falar comigo!');
+window.open('https://wa.me/5519993835534');
+}
+}
+</script>
 
 </body>
 </html>
