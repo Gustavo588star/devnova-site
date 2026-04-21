@@ -1,162 +1,937 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DEVNOVA | Criação de Sites Profissionais</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DEVNOVA | Sites premium para empresas</title>
+  <meta name="description" content="A DEVNOVA cria sites modernos, premium e responsivos para empresas que querem crescer no digital." />
+  <style>
+    :root{
+      --bg:#030712;
+      --bg2:#071120;
+      --card:rgba(10,18,32,.86);
+      --line:rgba(255,255,255,.08);
+      --text:#f4f8ff;
+      --muted:#9fb0c6;
+      --blue:#17b7ff;
+      --blue2:#0b67ff;
+      --cyan:#78ecff;
+      --shadow:0 0 35px rgba(23,183,255,.18);
+      --radius:24px;
+      --max:1180px;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #030712;
-  color: white;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(23,183,255,.16), transparent 24%),
+        radial-gradient(circle at 90% 20%, rgba(11,103,255,.18), transparent 22%),
+        radial-gradient(circle at 75% 80%, rgba(120,236,255,.09), transparent 18%),
+        linear-gradient(180deg, #02050b 0%, #07101c 52%, #02050b 100%);
+      overflow-x:hidden;
+    }
 
-/* NAVBAR */
-header {
-  background: #02050b;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+      background-size:38px 38px;
+      mask-image:linear-gradient(to bottom, rgba(0,0,0,.42), rgba(0,0,0,.04));
+      z-index:0;
+    }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
+    .particles{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+    .particles span{
+      position:absolute;
+      width:4px;
+      height:4px;
+      border-radius:50%;
+      background:rgba(120,236,255,.65);
+      box-shadow:0 0 12px rgba(120,236,255,.85);
+      animation:floatParticle linear infinite;
+    }
+    @keyframes floatParticle{
+      from{transform:translateY(105vh) scale(.7); opacity:0}
+      10%{opacity:1}
+      to{transform:translateY(-10vh) scale(1.2); opacity:0}
+    }
 
-.brand img {
-  width: 90px;
-  height: 90px;
-  object-fit: contain;
-}
+    .wrap{
+      width:min(var(--max), calc(100% - 32px));
+      margin:0 auto;
+      position:relative;
+      z-index:1;
+    }
 
-.brand span {
-  font-size: 22px;
-  font-weight: bold;
-}
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(14px);
+      background:rgba(3,7,18,.72);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
 
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-}
+    .nav{
+      min-height:84px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
 
-.hero h1 {
-  font-size: 40px;
-  color: #00c3ff;
-}
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      text-decoration:none;
+      color:#fff;
+      font-weight:800;
+      letter-spacing:.5px;
+    }
 
-.hero p {
-  color: #ccc;
-  max-width: 600px;
-  margin: auto;
-}
+    .brand img{
+      width:120px;
+      height:120px;
+      object-fit:contain;
+      filter:drop-shadow(0 0 20px rgba(23,183,255,.28));
+    }
 
-.btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 15px 30px;
-  background: #00c3ff;
-  color: black;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: bold;
-}
+    .brand span{
+      font-size:1.25rem;
+      letter-spacing:1px;
+    }
 
-/* SERVIÇOS */
-section {
-  padding: 60px 20px;
-  text-align: center;
-}
+    .menu{
+      display:flex;
+      align-items:center;
+      gap:22px;
+      flex-wrap:wrap;
+    }
 
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
+    .menu a{
+      text-decoration:none;
+      color:var(--muted);
+      transition:.25s;
+      font-size:.96rem;
+    }
+    .menu a:hover{color:#fff}
 
-.card {
-  background: #0b1220;
-  padding: 25px;
-  width: 250px;
-  border-radius: 15px;
-}
+    .btn,.btn-outline{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      font-weight:700;
+      padding:15px 24px;
+      border-radius:999px;
+      transition:.25s;
+      white-space:nowrap;
+    }
 
-.card h3 {
-  color: #00c3ff;
-}
+    .btn{
+      color:#03111d;
+      background:linear-gradient(135deg, var(--cyan), var(--blue), var(--blue2));
+      box-shadow:0 14px 35px rgba(23,183,255,.28);
+      position:relative;
+      overflow:hidden;
+    }
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:-3px auto -3px -35%;
+      width:26%;
+      transform:skewX(-20deg);
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.65), transparent);
+      animation:shine 3.2s infinite;
+    }
+    @keyframes shine{to{left:120%}}
+    .btn:hover{transform:translateY(-2px)}
 
-/* RODAPÉ */
-footer {
-  padding: 30px;
-  text-align: center;
-  background: #000;
-}
+    .btn-outline{
+      color:#e8f3ff;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+    .btn-outline:hover{
+      background:rgba(255,255,255,.08);
+      transform:translateY(-2px);
+    }
 
-.dev {
-  margin-top: 15px;
-  color: #6f839d;
-}
-</style>
+    .hero{
+      padding:78px 0 48px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      background:rgba(23,183,255,.08);
+      border:1px solid rgba(120,236,255,.16);
+      color:#d7f7ff;
+      margin-bottom:18px;
+      box-shadow:var(--shadow);
+      font-size:.92rem;
+    }
+
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--cyan);
+      box-shadow:0 0 16px var(--cyan);
+      animation:pulse 1.8s infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1);opacity:1}
+      50%{transform:scale(1.4);opacity:.6}
+    }
+
+    h1{
+      margin:0 0 16px;
+      font-size:clamp(2.6rem, 5vw, 4.8rem);
+      line-height:1.02;
+      letter-spacing:-1.8px;
+    }
+
+    .gradient{
+      background:linear-gradient(90deg,#fff 0%, #c5f8ff 22%, #65ddff 55%, #157dff 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      margin:0;
+      color:var(--muted);
+      font-size:1.06rem;
+      line-height:1.75;
+      max-width:650px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .hero-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+      margin-top:34px;
+    }
+
+    .stat{
+      padding:18px;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 12px 35px rgba(0,0,0,.18);
+    }
+    .stat strong{
+      display:block;
+      font-size:1.45rem;
+      margin-bottom:6px;
+    }
+    .stat span{
+      color:var(--muted);
+      font-size:.93rem;
+      line-height:1.55;
+    }
+
+    .visual{
+      min-height:580px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    .orb{
+      position:absolute;
+      width:390px;
+      height:390px;
+      border-radius:50%;
+      background:radial-gradient(circle at center, rgba(120,236,255,.24), rgba(11,103,255,.11) 44%, transparent 68%);
+      animation:floatOrb 6s ease-in-out infinite;
+    }
+    @keyframes floatOrb{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-18px)}
+    }
+
+    .assistant-card{
+      width:min(100%, 500px);
+      padding:28px;
+      border-radius:28px;
+      background:linear-gradient(180deg, rgba(7,18,36,.9), rgba(4,8,16,.96));
+      border:1px solid rgba(120,236,255,.14);
+      box-shadow:0 28px 80px rgba(0,0,0,.42), 0 0 42px rgba(23,183,255,.12);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .assistant-card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:inherit;
+      padding:1px;
+      background:linear-gradient(145deg, rgba(120,236,255,.38), transparent 40%, rgba(11,103,255,.34));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+              mask-composite:exclude;
+      pointer-events:none;
+    }
+
+    .assistant-top{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:18px;
+      flex-wrap:wrap;
+    }
+
+    .assistant-badge{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:#d2ecff;
+      font-size:.88rem;
+    }
+
+    .assistant-screen{
+      min-height:300px;
+      border-radius:24px;
+      background:
+        radial-gradient(circle at 50% 24%, rgba(120,236,255,.12), transparent 36%),
+        linear-gradient(180deg, #08111f, #050b14);
+      border:1px solid rgba(255,255,255,.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .rings,.rings::before,.rings::after{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      border:1px solid rgba(120,236,255,.22);
+      animation:spin 14s linear infinite;
+    }
+    .rings::before{
+      width:290px;height:290px;
+      border-color:rgba(23,183,255,.14);
+      animation-duration:19s;
+    }
+    .rings::after{
+      width:170px;height:170px;
+      border-color:rgba(255,255,255,.14);
+      animation-duration:10s;
+      animation-direction:reverse;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .robot{
+      position:relative;
+      width:170px;
+      height:210px;
+      z-index:2;
+      animation:floatRobot 4.5s ease-in-out infinite;
+    }
+    @keyframes floatRobot{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-12px)}
+    }
+
+    .robot-head{
+      width:118px;
+      height:92px;
+      margin:0 auto;
+      border-radius:30px;
+      background:linear-gradient(180deg,#172842,#0b1424);
+      border:2px solid rgba(120,236,255,.45);
+      box-shadow:0 0 30px rgba(23,183,255,.16);
+      position:relative;
+    }
+    .robot-head::before{
+      content:"";
+      position:absolute;
+      top:-18px;
+      left:50%;
+      transform:translateX(-50%);
+      width:4px;height:18px;
+      border-radius:999px;
+      background:linear-gradient(#8ff8ff,#1ba5ff);
+    }
+    .robot-head::after{
+      content:"";
+      position:absolute;
+      top:-29px;
+      left:50%;
+      transform:translateX(-50%);
+      width:14px;height:14px;border-radius:50%;
+      background:var(--cyan);
+      box-shadow:0 0 16px var(--cyan);
+    }
+
+    .eyes{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+    }
+    .eyes span{
+      width:19px;height:19px;border-radius:50%;
+      background:linear-gradient(180deg,#b9fbff,#17b7ff);
+      box-shadow:0 0 16px rgba(120,236,255,.75);
+      animation:blink 4s infinite;
+    }
+    @keyframes blink{
+      0%,44%,48%,100%{transform:scaleY(1)}
+      46%{transform:scaleY(.12)}
+    }
+
+    .robot-body{
+      width:132px;height:88px;
+      margin:16px auto 0;
+      border-radius:24px;
+      background:linear-gradient(180deg,#0f1d34,#08111f);
+      border:2px solid rgba(120,236,255,.24);
+      position:relative;
+    }
+
+    .robot-core{
+      position:absolute;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      width:40px;height:40px;border-radius:50%;
+      background:radial-gradient(circle, #d7ffff 0%, #38d1ff 42%, #0b67ff 100%);
+      box-shadow:0 0 24px rgba(120,236,255,.58);
+    }
+
+    .arm,.arm.right,.leg,.leg.right{
+      position:absolute;
+      background:linear-gradient(180deg,#8ff8ff,#1591ff);
+      border-radius:999px;
+    }
+    .arm{width:12px;height:56px;left:-11px;top:14px;transform:rotate(24deg)}
+    .arm.right{left:auto;right:-11px;transform:rotate(-24deg)}
+    .leg{width:12px;height:48px;left:42px;bottom:-36px}
+    .leg.right{left:auto;right:42px}
+
+    .chat-bubble{
+      margin-top:18px;
+      padding:18px;
+      border-radius:18px 18px 18px 6px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:#dcecff;
+      line-height:1.7;
+      font-size:.98rem;
+    }
+
+    .typing{
+      display:inline-flex;
+      gap:6px;
+      margin-left:8px;
+      vertical-align:middle;
+    }
+    .typing i{
+      width:7px;height:7px;border-radius:50%;
+      background:#89f7ff;
+      display:block;
+      animation:typing 1.2s infinite;
+    }
+    .typing i:nth-child(2){animation-delay:.2s}
+    .typing i:nth-child(3){animation-delay:.4s}
+    @keyframes typing{
+      0%,100%{opacity:.25;transform:translateY(0)}
+      50%{opacity:1;transform:translateY(-4px)}
+    }
+
+    section{
+      padding:44px 0;
+      position:relative;
+      z-index:1;
+    }
+
+    .section-head{
+      max-width:760px;
+      margin:0 auto 28px;
+      text-align:center;
+    }
+    .kicker{
+      display:inline-block;
+      color:#8de5ff;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.88rem;
+      margin-bottom:10px;
+    }
+
+    h2{
+      margin:0 0 12px;
+      font-size:clamp(2rem,4vw,3rem);
+      letter-spacing:-1px;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+    }
+
+    .grid-4,.process{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+
+    .card,.step{
+      padding:24px;
+      border-radius:24px;
+      background:linear-gradient(180deg, rgba(10,17,31,.94), rgba(5,9,18,.92));
+      border:1px solid rgba(255,255,255,.07);
+      box-shadow:0 16px 45px rgba(0,0,0,.2);
+      transition:.28s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card::before,.step::before{
+      content:"";
+      position:absolute;
+      inset:auto -30% -55% auto;
+      width:180px;height:180px;border-radius:50%;
+      background:radial-gradient(circle, rgba(23,183,255,.18), transparent 65%);
+      transition:.3s;
+    }
+
+    .card:hover,.step:hover{
+      transform:translateY(-8px);
+      border-color:rgba(120,236,255,.22);
+      box-shadow:0 18px 50px rgba(0,0,0,.32), 0 0 32px rgba(23,183,255,.08);
+    }
+
+    .icon{
+      width:60px;height:60px;border-radius:18px;
+      display:grid;place-items:center;
+      font-size:1.3rem;
+      color:#dff9ff;
+      background:linear-gradient(180deg, rgba(23,183,255,.18), rgba(11,103,255,.14));
+      border:1px solid rgba(120,236,255,.18);
+      box-shadow:var(--shadow);
+      margin-bottom:18px;
+    }
+
+    .card h3,.step h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .card p,.step p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:.96rem;
+    }
+
+    .step-num{
+      width:44px;height:44px;border-radius:50%;
+      display:grid;place-items:center;
+      background:linear-gradient(180deg,#90f7ff,#189eff);
+      color:#04111d;
+      font-weight:800;
+      margin-bottom:14px;
+      box-shadow:0 0 22px rgba(120,236,255,.34);
+    }
+
+    .cta{
+      margin:32px 0 18px;
+      padding:34px;
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(120,236,255,.14), transparent 30%),
+        linear-gradient(180deg, rgba(8,17,31,.98), rgba(5,9,17,.98));
+      border:1px solid rgba(120,236,255,.14);
+      box-shadow:0 18px 60px rgba(0,0,0,.30), 0 0 34px rgba(23,183,255,.08);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .cta h3{
+      margin:0 0 8px;
+      font-size:1.6rem;
+    }
+    .cta p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.7;
+      max-width:700px;
+    }
+
+    footer{
+      padding:34px 0 52px;
+      border-top:1px solid rgba(255,255,255,.06);
+      margin-top:22px;
+    }
+
+    .footer-row{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center;
+      flex-wrap:wrap;
+      color:#91a4bb;
+    }
+
+    .credit{
+      margin-top:16px;
+      text-align:center;
+      color:#6f839d;
+      font-size:.96rem;
+    }
+    .credit strong{color:#97efff}
+
+    .floating-wa{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:40;
+      width:64px;height:64px;border-radius:50%;
+      display:grid;place-items:center;
+      text-decoration:none;
+      color:#fff;
+      font-size:1.4rem;
+      font-weight:700;
+      background:linear-gradient(135deg,#17f29c,#07c56e);
+      box-shadow:0 16px 40px rgba(7,197,110,.35);
+      animation:bounceSoft 2.2s infinite;
+    }
+    @keyframes bounceSoft{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-5px)}
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(24px);
+      transition:all .7s ease;
+    }
+    .reveal.show{
+      opacity:1;
+      transform:none;
+    }
+
+    @media (max-width:1080px){
+      .hero-grid{grid-template-columns:1fr}
+      .visual{min-height:auto}
+      .hero-stats{grid-template-columns:repeat(3,1fr)}
+      .grid-4,.process{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:760px){
+      .menu{display:none}
+      .brand img{width:96px;height:96px}
+      .brand span{font-size:1.08rem}
+      .hero{padding-top:56px}
+      .hero-stats{grid-template-columns:1fr}
+      .grid-4,.process{grid-template-columns:1fr}
+      .assistant-card{padding:18px}
+      .assistant-screen{min-height:250px}
+      .cta{padding:24px}
+      h1{line-height:1.05}
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-  <div class="brand">
-    <img src="logo.png">
-    <span>DEVNOVA</span>
+  <div class="particles">
+    <span style="left:8%; animation-duration:11s; animation-delay:-2s;"></span>
+    <span style="left:18%; animation-duration:14s; animation-delay:-5s;"></span>
+    <span style="left:29%; animation-duration:16s; animation-delay:-8s;"></span>
+    <span style="left:42%; animation-duration:13s; animation-delay:-3s;"></span>
+    <span style="left:55%; animation-duration:18s; animation-delay:-9s;"></span>
+    <span style="left:68%; animation-duration:12s; animation-delay:-1s;"></span>
+    <span style="left:79%; animation-duration:15s; animation-delay:-6s;"></span>
+    <span style="left:90%; animation-duration:17s; animation-delay:-7s;"></span>
   </div>
-</header>
 
-<div class="hero">
-  <h1>Sites modernos para empresas que querem crescer</h1>
-  <p>Criamos sites profissionais, rápidos e bonitos para valorizar seu negócio.</p>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a href="#inicio" class="brand">
+        <img src="logo.png" alt="Logo DEVNOVA">
+        <span>DEVNOVA</span>
+      </a>
 
-  <a class="btn" href="https://wa.me/5519993835534" target="_blank">
-    Falar no WhatsApp
+      <nav class="menu">
+        <a href="#servicos">Serviços</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#processo">Processo</a>
+        <a href="#contato">Contato</a>
+        <a class="btn" href="https://wa.me/5519993835534?text=Olá!%20Quero%20um%20site%20profissional." target="_blank">Solicitar orçamento</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <div class="eyebrow"><span class="dot"></span> Presença digital com impacto real</div>
+        <h1>
+          Sites premium para marcas que querem
+          <span class="gradient">se destacar de verdade</span>
+        </h1>
+        <p>
+          A DEVNOVA cria sites modernos, estratégicos e visualmente marcantes para empresas que querem mais autoridade,
+          confiança e resultado no digital.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn" href="https://wa.me/5519993835534?text=Olá!%20Quero%20um%20site%20premium." target="_blank">Falar no WhatsApp</a>
+          <a class="btn-outline" href="#servicos">Explorar serviços</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>Premium</strong>
+            <span>Visual moderno para sua empresa causar uma primeira impressão forte.</span>
+          </div>
+          <div class="stat">
+            <strong>Rápido</strong>
+            <span>Sites pensados para carregar bem e funcionar com fluidez.</span>
+          </div>
+          <div class="stat">
+            <strong>Responsivo</strong>
+            <span>Experiência bonita no celular, computador e tablet.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual reveal">
+        <div class="orb"></div>
+
+        <div class="assistant-card">
+          <div class="assistant-top">
+            <div class="assistant-badge">Assistente DEVNOVA</div>
+            <div class="assistant-badge">Online</div>
+          </div>
+
+          <div class="assistant-screen">
+            <div class="rings"></div>
+
+            <div class="robot">
+              <div class="robot-head">
+                <div class="eyes"><span></span><span></span></div>
+              </div>
+
+              <div class="robot-body">
+                <div class="robot-core"></div>
+                <div class="arm"></div>
+                <div class="arm right"></div>
+                <div class="leg"></div>
+                <div class="leg right"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-bubble">
+            Olá, eu sou o assistente da DEVNOVA. Vamos transformar sua ideia em um site profissional?
+            <span class="typing"><i></i><i></i><i></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section id="servicos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Serviços</div>
+        <h2>Soluções digitais com estética forte e foco em resultado</h2>
+        <p>
+          Criamos páginas bonitas, profissionais e estratégicas para valorizar sua empresa e facilitar o contato com clientes.
+        </p>
+      </div>
+
+      <div class="grid-4">
+        <article class="card reveal">
+          <div class="icon">⌘</div>
+          <h3>Sites institucionais</h3>
+          <p>Sites elegantes para apresentar sua empresa com mais autoridade e profissionalismo.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">⚡</div>
+          <h3>Landing pages</h3>
+          <p>Páginas estratégicas para divulgação de serviços, campanhas e geração de contatos.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">▣</div>
+          <h3>Design responsivo</h3>
+          <p>Layout adaptado para celular, tablet e computador com visual consistente em qualquer tela.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">↗</div>
+          <h3>Performance e SEO</h3>
+          <p>Estrutura mais otimizada para velocidade, navegação e presença online mais forte.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="diferenciais">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Diferenciais</div>
+        <h2>Por que escolher a DEVNOVA?</h2>
+        <p>
+          Seu site precisa parecer confiável, atual e valioso. É isso que faz uma marca ser levada a sério no digital.
+        </p>
+      </div>
+
+      <div class="grid-4">
+        <article class="card reveal">
+          <div class="icon">✦</div>
+          <h3>Visual premium</h3>
+          <p>Design com impacto, profundidade e identidade para destacar sua marca logo no primeiro acesso.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">◉</div>
+          <h3>Movimento elegante</h3>
+          <p>Animações suaves que deixam o site mais moderno sem ficar exagerado ou poluído.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">◎</div>
+          <h3>Foco em conversão</h3>
+          <p>Estrutura pensada para facilitar o clique, o contato e a geração de oportunidades.</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon">∞</div>
+          <h3>Atendimento direto</h3>
+          <p>Comunicação simples e objetiva para transformar sua ideia em um projeto pronto para impressionar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="processo">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Processo</div>
+        <h2>Como funciona a criação do seu site</h2>
+        <p>
+          Um processo claro e profissional para tirar sua ideia do papel e transformar isso em uma presença digital forte.
+        </p>
+      </div>
+
+      <div class="process">
+        <article class="step reveal">
+          <div class="step-num">1</div>
+          <h3>Briefing</h3>
+          <p>Entendemos seu negócio, seu estilo e o objetivo do projeto.</p>
+        </article>
+
+        <article class="step reveal">
+          <div class="step-num">2</div>
+          <h3>Criação</h3>
+          <p>Desenvolvemos um layout moderno com identidade visual forte.</p>
+        </article>
+
+        <article class="step reveal">
+          <div class="step-num">3</div>
+          <h3>Ajustes</h3>
+          <p>Refinamos os detalhes para alinhar o site com sua marca.</p>
+        </article>
+
+        <article class="step reveal">
+          <div class="step-num">4</div>
+          <h3>Entrega</h3>
+          <p>Publicamos o projeto e deixamos sua empresa pronta para se destacar online.</p>
+        </article>
+      </div>
+
+      <div class="cta reveal" id="contato">
+        <div>
+          <h3>Quer um site com cara de empresa forte?</h3>
+          <p>
+            Fale com a DEVNOVA e transforme sua ideia em um projeto visualmente marcante, moderno e profissional.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn" href="https://wa.me/5519993835534?text=Olá!%20Quero%20um%20site%20premium%20com%20a%20DEVNOVA." target="_blank">Chamar no WhatsApp</a>
+          <a class="btn-outline" href="#inicio">Voltar ao topo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div><strong>DEVNOVA</strong> — Criação de sites profissionais</div>
+      <div>WhatsApp: +55 19 99383-5534</div>
+    </div>
+
+    <div class="credit">
+      Site desenvolvido por <strong>DEVNOVA</strong>
+    </div>
+  </footer>
+
+  <a class="floating-wa" href="https://wa.me/5519993835534?text=Olá!%20Vim%20pelo%20site%20da%20DEVNOVA." target="_blank" aria-label="WhatsApp">
+    W
   </a>
-</div>
 
-<section>
-  <h2>Serviços</h2>
+  <script>
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+        }
+      });
+    }, {threshold:.14});
 
-  <div class="cards">
-    <div class="card">
-      <h3>Sites Profissionais</h3>
-      <p>Sites modernos e personalizados.</p>
-    </div>
-
-    <div class="card">
-      <h3>Responsivo</h3>
-      <p>Funciona perfeito no celular.</p>
-    </div>
-
-    <div class="card">
-      <h3>Performance</h3>
-      <p>Sites rápidos e leves.</p>
-    </div>
-
-    <div class="card">
-      <h3>SEO</h3>
-      <p>Melhor presença no Google.</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div>DEVNOVA — Criação de sites profissionais</div>
-  <div>WhatsApp: +55 19 99383-5534</div>
-
-  <div class="dev">
-    Site desenvolvido por <strong style="color:#00c3ff;">DEVNOVA</strong>
-  </div>
-</footer>
-
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
 </body>
 </html>
